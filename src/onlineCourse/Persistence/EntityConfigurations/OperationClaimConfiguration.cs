@@ -6,6 +6,14 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
+using Application.Features.Courses.Constants;
+using Application.Features.CourseContents.Constants;
+using Application.Features.CourseDocuments.Constants;
+using Application.Features.UserCourses.Constants;
+
+
+
+
 
 namespace Persistence.EntityConfigurations;
 
@@ -97,6 +105,62 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
+        
+        #region Courses
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Read },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Write },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Create },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Update },
+                new() { Id = ++lastId, Name = CoursesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region CourseContents
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Read },
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Write },
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Create },
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Update },
+                new() { Id = ++lastId, Name = CourseContentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region CourseDocuments
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Admin },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Read },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Write },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Create },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Update },
+                new() { Id = ++lastId, Name = CourseDocumentsOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
+        
+        #region UserCourses
+        featureOperationClaims.AddRange(
+            [
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Admin },
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Read },
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Write },
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Create },
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Update },
+                new() { Id = ++lastId, Name = UserCoursesOperationClaims.Delete },
+            ]
+        );
+        #endregion
+        
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
