@@ -1,4 +1,3 @@
-using Application.Features.Courses.Constants;
 using Application.Features.Courses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;

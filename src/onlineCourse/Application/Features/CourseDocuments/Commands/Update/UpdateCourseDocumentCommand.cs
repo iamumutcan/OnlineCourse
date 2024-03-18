@@ -2,8 +2,8 @@ using Application.Features.CourseDocuments.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
-using MediatR;
 using Domain.Enums;
+using MediatR;
 
 namespace Application.Features.CourseDocuments.Commands.Update;
 

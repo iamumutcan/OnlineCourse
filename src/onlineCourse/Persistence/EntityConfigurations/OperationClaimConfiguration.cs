@@ -1,15 +1,15 @@
 using Application.Features.Auth.Constants;
+using Application.Features.CourseContents.Constants;
+using Application.Features.CourseDocuments.Constants;
+using Application.Features.Courses.Constants;
 using Application.Features.OperationClaims.Constants;
+using Application.Features.UserCourses.Constants;
 using Application.Features.UserOperationClaims.Constants;
 using Application.Features.Users.Constants;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
-using Application.Features.Courses.Constants;
-using Application.Features.CourseContents.Constants;
-using Application.Features.CourseDocuments.Constants;
-using Application.Features.UserCourses.Constants;
 
 
 
@@ -105,7 +105,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
-        
+
         #region Courses
         featureOperationClaims.AddRange(
             [
@@ -118,8 +118,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region CourseContents
         featureOperationClaims.AddRange(
             [
@@ -132,8 +132,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region CourseDocuments
         featureOperationClaims.AddRange(
             [
@@ -146,8 +146,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region UserCourses
         featureOperationClaims.AddRange(
             [
@@ -160,7 +160,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
+
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed
