@@ -28,5 +28,17 @@ public class BaseDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        Seed(modelBuilder);
+
+    }
+
+    private void Seed(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Course>().HasData(
+            new Course { Id = Guid.NewGuid(), Name = "Course 1", Description = "Description 1" },
+            new Course { Id = Guid.NewGuid(), Name = "Course 2", Description = "Description 2" }
+            // Add more courses as needed
+        );
     }
 }

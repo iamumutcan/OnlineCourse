@@ -12,6 +12,7 @@ public class CourseDocument : Entity<Guid>
     public int Duration { get; set; }
     public double FileSize { get; set; }
     public Guid CourseContentId { get; set; }
+
     [JsonIgnore]
     public virtual CourseContent CourseContent { get; set; }
 

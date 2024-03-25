@@ -9,5 +9,5 @@ public class CourseContent : Entity<Guid>
     public Guid CourseId { get; set; }
     [JsonIgnore]
     public virtual Course Course { get; set; }
-    public virtual CourseDocument CourseDocument { get; set; }
+    public virtual ICollection<CourseDocument> CourseDocuments { get; set; }
 }
