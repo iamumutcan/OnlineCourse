@@ -1,4 +1,5 @@
 using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Reflection;
@@ -18,6 +19,8 @@ public class BaseDbContext : DbContext
     public DbSet<CourseContent> CourseContents { get; set; }
     public DbSet<CourseDocument> CourseDocuments { get; set; }
     public DbSet<UserCourse> UserCourses { get; set; }
+    public DbSet<Category> Categories { get; set; }
+    public DbSet<Instructor> Instructors { get; set; }
 
     public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration)
         : base(dbContextOptions)
@@ -29,16 +32,13 @@ public class BaseDbContext : DbContext
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        Seed(modelBuilder);
+        modelBuilder.Entity<Course>().Property(c => c.SortNumber).HasDefaultValue(10);
+        modelBuilder.Entity<CourseContent>().Property(c => c.SortNumber).HasDefaultValue(10);
+        modelBuilder.Entity<Course>().Property(c => c.Status).HasDefaultValue(CourseStatus.WaitingForApproval);
+        modelBuilder.Entity<Instructor>().Property(c => c.InstructorStatus).HasDefaultValue(InstructorStatus.WaitingForApproval);
+        modelBuilder.Entity<UserCourse>().Property(c => c.Confirmation).HasDefaultValue(UserCourseStatus.WaitingForApproval);
 
     }
 
-    private void Seed(ModelBuilder modelBuilder)
-    {
-        modelBuilder.Entity<Course>().HasData(
-            new Course { Id = Guid.NewGuid(), Name = "Course 1", Description = "Description 1" },
-            new Course { Id = Guid.NewGuid(), Name = "Course 2", Description = "Description 2" }
-            // Add more courses as needed
-        );
-    }
+
 }

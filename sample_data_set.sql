@@ -1,9 +1,21 @@
-﻿-- Kurslar
-INSERT INTO Courses(Id, Name, Description, CreatedDate)
+﻿-- Kategoriler
+INSERT INTO Categories(Id, Name, Description, CreatedDate)
 VALUES
-    ('4155b25d-017e-4f8f-a6fe-6dc58d674fd9', 'Matematik', 'Matematik dersi içeriği', GETDATE()),
-    ('b2c6d44a-c072-49b7-9ccb-558c20c749c5', 'Fizik', 'Fizik dersi içeriği', GETDATE()),
-    ('94f0a7e7-4325-43d9-bc07-4ccee2a4e103', 'Kimya', 'Kimya dersi içeriği', GETDATE());
+    ('9f378682-bee5-4c62-a8c7-36eb1d14c305', 'Yazılım', 'Yazılım eğitimleri içeriği', GETDATE()),
+    ('2a038ea0-950f-4d3c-a7f7-b6b6abc0bcc1', 'Finans ve Muhasebe', 'Finans ve Muhasebe eğitimleri içeriği', GETDATE()),
+    ('ec5834f6-a9a4-4889-ad1d-7e9fd11f534e', 'Sağlık ve Fitness', 'Sağlık ve fitness ile ilgili eğitimlerin bulunduğu kategori', GETDATE()),
+    ('c9cd4337-c5c0-4e97-b568-d1f357d57c6f', 'Sanat ve Tasarım', 'Sanat ve tasarım konularında eğitimlerin bulunduğu kategori', GETDATE()),
+    ('affb0ced-b247-41dd-acac-e1e6f9424129', 'Yabancı Dil', 'Yabancı dil öğrenimiyle ilgili eğitimlerin bulunduğu kategori', GETDATE()),
+    ('a7ad193b-4910-4df2-a370-7eee9710514e', 'Kişisel Gelişim', 'Kişisel gelişim ve liderlik konularında eğitimlerin bulunduğu kategori', GETDATE()),
+    ('94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Temel Lise Dersleri', 'Temel Lise eğitimlerin bulunduğu kategori', GETDATE());
+
+
+-- Kurslar
+INSERT INTO Courses(Id,CategoryId, Name, Description, CreatedDate)
+VALUES
+    ('4155b25d-017e-4f8f-a6fe-6dc58d674fd9','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Matematik', 'Matematik dersi içeriği', GETDATE()),
+    ('b2c6d44a-c072-49b7-9ccb-558c20c749c5','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Fizik', 'Fizik dersi içeriği', GETDATE()),
+    ('94f0a7e7-4325-43d9-bc07-4ccee2a4e103','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Kimya', 'Kimya dersi içeriği', GETDATE());
 
 -- İçerikler
 INSERT INTO CourseContents(Id, Summary, CourseId, CreatedDate)
@@ -37,10 +49,10 @@ VALUES
 
 
 -- Kurslar
-INSERT INTO Courses (Id, Name, Description, CreatedDate)
+INSERT INTO Courses(Id,CategoryId, Name, Description, CreatedDate)
 VALUES
-    ('7fe2fbf5-987c-4f12-b10b-df76f3d8b320', 'Python Programlama', 'Python programlama dilini öğrenmek için kapsamlı bir kurs', GETDATE()),
-    ('3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4', 'Veri Bilimi Temelleri', 'Veri bilimi dünyasına giriş yapmak için temel bilgilerin öğretildiği bir kurs', GETDATE());
+    ('7fe2fbf5-987c-4f12-b10b-df76f3d8b320','9f378682-bee5-4c62-a8c7-36eb1d14c305', 'Python Programlama', 'Python programlama dilini öğrenmek için kapsamlı bir kurs', GETDATE()),
+    ('3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4','9f378682-bee5-4c62-a8c7-36eb1d14c305', 'Veri Bilimi Temelleri', 'Veri bilimi dünyasına giriş yapmak için temel bilgilerin öğretildiği bir kurs', GETDATE());
 
 -- İçerikler
 INSERT INTO CourseContents (Id, Summary, CourseId, CreatedDate)

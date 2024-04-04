@@ -28,7 +28,8 @@ public class GetByIdCourseQuery : IRequest<GetByIdCourseResponse>
         {
             Course? course = await _courseRepository.GetAsync(
                            include: c => c.Include(c => c.CourseContents),
-                           predicate: c => c.Id == request.Id, cancellationToken: cancellationToken); await _courseBusinessRules.CourseShouldExistWhenSelected(course);
+                           predicate: c => c.Id == request.Id, cancellationToken: cancellationToken);
+            await _courseBusinessRules.CourseShouldExistWhenSelected(course);
 
             GetByIdCourseResponse response = _mapper.Map<GetByIdCourseResponse>(course);
             return response;
