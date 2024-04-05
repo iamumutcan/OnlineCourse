@@ -3,11 +3,9 @@ using Application.Features.CourseDocuments.Commands.Delete;
 using Application.Features.CourseDocuments.Commands.Update;
 using Application.Features.CourseDocuments.Queries.GetById;
 using Application.Features.CourseDocuments.Queries.GetList;
-using Domain.Common;
-using Infrastructure.Adapters.FileService;
-using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
@@ -15,27 +13,6 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class CourseDocumentsController : BaseController
 {
-
-
-    [HttpPost("UploadFile")]
-    public IActionResult UploadFile(IFormFile file)
-    {
-        if (file == null || file.Length == 0)
-        {
-            return BadRequest("File is null or empty");
-        }
-
-        var uploadHandler = new UploadHandler();
-        var result = uploadHandler.Upload(file);
-
-        if (!string.IsNullOrEmpty(result.Error))
-        {
-            return BadRequest(result.Error);
-        }
-
-        return Ok(result);
-    }
-
     [HttpPost]
     public async Task<IActionResult> Add([FromBody] CreateCourseDocumentCommand createCourseDocumentCommand)
     {

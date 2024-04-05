@@ -6,6 +6,7 @@ public class CreateCourseContentCommandValidator : AbstractValidator<CreateCours
 {
     public CreateCourseContentCommandValidator()
     {
+        RuleFor(c => c.SortNumber).NotEmpty();
         RuleFor(c => c.Summary).NotEmpty();
         RuleFor(c => c.CourseId).NotEmpty();
     }

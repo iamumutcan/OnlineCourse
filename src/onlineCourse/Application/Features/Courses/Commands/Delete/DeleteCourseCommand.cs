@@ -1,3 +1,4 @@
+using Application.Features.Courses.Constants;
 using Application.Features.Courses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
@@ -29,7 +30,7 @@ public class DeleteCourseCommand : IRequest<DeletedCourseResponse>
             Course? course = await _courseRepository.GetAsync(predicate: c => c.Id == request.Id, cancellationToken: cancellationToken);
             await _courseBusinessRules.CourseShouldExistWhenSelected(course);
 
-            await _courseRepository.DeleteAsync(course!);
+           await _courseRepository.DeleteAsync(course!,true);
 
             DeletedCourseResponse response = _mapper.Map<DeletedCourseResponse>(course);
             return response;

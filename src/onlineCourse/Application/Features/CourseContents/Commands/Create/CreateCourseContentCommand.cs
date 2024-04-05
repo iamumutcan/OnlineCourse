@@ -8,6 +8,7 @@ namespace Application.Features.CourseContents.Commands.Create;
 
 public class CreateCourseContentCommand : IRequest<CreatedCourseContentResponse>
 {
+    public int SortNumber { get; set; }
     public string Summary { get; set; }
     public Guid CourseId { get; set; }
 

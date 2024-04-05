@@ -29,6 +29,10 @@ public static class PersistenceServiceRegistration
         services.AddScoped<IUserCourseRepository, UserCourseRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IInstructorRepository, InstructorRepository>();
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<ICourseContentRepository, CourseContentRepository>();
+        services.AddScoped<ICourseDocumentRepository, CourseDocumentRepository>();
+        services.AddScoped<IUserCourseRepository, UserCourseRepository>();
         return services;
     }
 }

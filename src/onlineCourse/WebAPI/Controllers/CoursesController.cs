@@ -3,9 +3,9 @@ using Application.Features.Courses.Commands.Delete;
 using Application.Features.Courses.Commands.Update;
 using Application.Features.Courses.Queries.GetById;
 using Application.Features.Courses.Queries.GetList;
-using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 
@@ -32,8 +32,8 @@ public class CoursesController : BaseController
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete([FromRoute] Guid id)
     {
-        DeletedCourseResponse response = await Mediator.Send(new DeleteCourseCommand { Id = id });
 
+        DeletedCourseResponse response = await Mediator.Send(new DeleteCourseCommand { Id = id });
         return Ok(response);
     }
 

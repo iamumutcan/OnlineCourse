@@ -4,8 +4,8 @@ using Application.Features.Courses.Commands.Update;
 using Application.Features.Courses.Queries.GetById;
 using Application.Features.Courses.Queries.GetList;
 using AutoMapper;
-using Domain.Entities;
 using NArchitecture.Core.Application.Responses;
+using Domain.Entities;
 using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Features.Courses.Profiles;

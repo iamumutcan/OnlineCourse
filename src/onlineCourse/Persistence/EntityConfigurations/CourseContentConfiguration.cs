@@ -11,6 +11,7 @@ public class CourseContentConfiguration : IEntityTypeConfiguration<CourseContent
         builder.ToTable("CourseContents").HasKey(cc => cc.Id);
 
         builder.Property(cc => cc.Id).HasColumnName("Id").IsRequired();
+        builder.Property(cc => cc.SortNumber).HasColumnName("SortNumber");
         builder.Property(cc => cc.Summary).HasColumnName("Summary");
         builder.Property(cc => cc.CourseId).HasColumnName("CourseId");
         builder.Property(cc => cc.CreatedDate).HasColumnName("CreatedDate").IsRequired();

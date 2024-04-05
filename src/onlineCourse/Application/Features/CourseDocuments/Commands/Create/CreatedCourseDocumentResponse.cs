@@ -1,5 +1,5 @@
-using Domain.Enums;
 using NArchitecture.Core.Application.Responses;
+using Domain.Enums;
 
 namespace Application.Features.CourseDocuments.Commands.Create;
 

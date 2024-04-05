@@ -8,5 +8,6 @@ public class CreateUserCourseCommandValidator : AbstractValidator<CreateUserCour
     {
         RuleFor(c => c.UserId).NotEmpty();
         RuleFor(c => c.CourseId).NotEmpty();
+        RuleFor(c => c.Confirmation).NotEmpty();
     }
 }

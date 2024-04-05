@@ -1,3 +1,4 @@
+using Application.Features.UserCourses.Constants;
 using Application.Features.UserCourses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;

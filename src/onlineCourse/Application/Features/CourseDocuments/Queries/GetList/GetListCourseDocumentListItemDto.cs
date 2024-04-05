@@ -1,5 +1,5 @@
-using Domain.Enums;
 using NArchitecture.Core.Application.Dtos;
+using Domain.Enums;
 
 namespace Application.Features.CourseDocuments.Queries.GetList;
 

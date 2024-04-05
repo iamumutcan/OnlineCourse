@@ -13,6 +13,7 @@ public class UserCourseConfiguration : IEntityTypeConfiguration<UserCourse>
         builder.Property(uc => uc.Id).HasColumnName("Id").IsRequired();
         builder.Property(uc => uc.UserId).HasColumnName("UserId");
         builder.Property(uc => uc.CourseId).HasColumnName("CourseId");
+        builder.Property(uc => uc.Confirmation).HasColumnName("Confirmation");
         builder.Property(uc => uc.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(uc => uc.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(uc => uc.DeletedDate).HasColumnName("DeletedDate");

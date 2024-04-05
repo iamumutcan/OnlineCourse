@@ -3,7 +3,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using NArchitecture.Core.Application.Pipelines.Transaction;
+using Domain.Enums;
 
 namespace Application.Features.Courses.Commands.Create;
 
@@ -11,6 +11,9 @@ public class CreateCourseCommand : IRequest<CreatedCourseResponse>
 {
     public string Name { get; set; }
     public string Description { get; set; }
+    public int SortNumber { get; set; }
+    public CourseStatus Status { get; set; }
+    public Guid CategoryId { get; set; }
 
     public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, CreatedCourseResponse>
     {

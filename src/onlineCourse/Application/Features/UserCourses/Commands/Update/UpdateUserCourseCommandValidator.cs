@@ -9,5 +9,6 @@ public class UpdateUserCourseCommandValidator : AbstractValidator<UpdateUserCour
         RuleFor(c => c.Id).NotEmpty();
         RuleFor(c => c.UserId).NotEmpty();
         RuleFor(c => c.CourseId).NotEmpty();
+        RuleFor(c => c.Confirmation).NotEmpty();
     }
 }

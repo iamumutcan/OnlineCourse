@@ -10,6 +10,7 @@ public class CreateUserCourseCommand : IRequest<CreatedUserCourseResponse>
 {
     public Guid UserId { get; set; }
     public Guid CourseId { get; set; }
+    public Boolean Confirmation { get; set; }
 
     public class CreateUserCourseCommandHandler : IRequestHandler<CreateUserCourseCommand, CreatedUserCourseResponse>
     {
