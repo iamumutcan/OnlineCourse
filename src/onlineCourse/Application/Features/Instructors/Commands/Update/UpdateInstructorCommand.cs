@@ -10,10 +10,10 @@ namespace Application.Features.Instructors.Commands.Update;
 public class UpdateInstructorCommand : IRequest<UpdatedInstructorResponse>
 {
     public Guid Id { get; set; }
-    public string Bio { get; set; }
-    public InstructorStatus InstructorStatus { get; set; }
-    public Guid UserId { get; set; }
-    public Guid CourseId { get; set; }
+    public required string Bio { get; set; }
+    public required InstructorStatus InstructorStatus { get; set; }
+    public required Guid UserId { get; set; }
+    public required Guid CourseId { get; set; }
 
     public class UpdateInstructorCommandHandler : IRequestHandler<UpdateInstructorCommand, UpdatedInstructorResponse>
     {

@@ -14,41 +14,48 @@ namespace WebAPI.Controllers;
 public class CoursesController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateCourseCommand createCourseCommand)
+    public async Task<ActionResult<CreatedCourseResponse>> Add([FromBody] CreateCourseCommand command)
     {
-        CreatedCourseResponse response = await Mediator.Send(createCourseCommand);
+        CreatedCourseResponse response = await Mediator.Send(command);
 
-        return Created(uri: "", response);
+        return CreatedAtAction(nameof(GetById), new { response.Id }, response);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCourseCommand updateCourseCommand)
+    public async Task<ActionResult<UpdatedCourseResponse>> Update([FromBody] UpdateCourseCommand command)
     {
-        UpdatedCourseResponse response = await Mediator.Send(updateCourseCommand);
+        UpdatedCourseResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<ActionResult<DeletedCourseResponse>> Delete([FromRoute] Guid id)
     {
+        DeleteCourseCommand command = new() { Id = id };
 
-        DeletedCourseResponse response = await Mediator.Send(new DeleteCourseCommand { Id = id });
+        DeletedCourseResponse response = await Mediator.Send(command);
+
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    public async Task<ActionResult<GetByIdCourseResponse>> GetById([FromRoute] Guid id)
     {
-        GetByIdCourseResponse response = await Mediator.Send(new GetByIdCourseQuery { Id = id });
+        GetByIdCourseQuery query = new() { Id = id };
+
+        GetByIdCourseResponse response = await Mediator.Send(query);
+
         return Ok(response);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<ActionResult<GetListCourseQuery>> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListCourseQuery getListCourseQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListCourseListItemDto> response = await Mediator.Send(getListCourseQuery);
+        GetListCourseQuery query = new() { PageRequest = pageRequest };
+
+        GetListResponse<GetListCourseListItemDto> response = await Mediator.Send(query);
+
         return Ok(response);
     }
 }

@@ -11,10 +11,10 @@ public class InstructorConfiguration : IEntityTypeConfiguration<Instructor>
         builder.ToTable("Instructors").HasKey(i => i.Id);
 
         builder.Property(i => i.Id).HasColumnName("Id").IsRequired();
-        builder.Property(i => i.Bio).HasColumnName("Bio");
-        builder.Property(i => i.InstructorStatus).HasColumnName("InstructorStatus");
-        builder.Property(i => i.UserId).HasColumnName("UserId");
-        builder.Property(i => i.CourseId).HasColumnName("CourseId");
+        builder.Property(i => i.Bio).HasColumnName("Bio").IsRequired();
+        builder.Property(i => i.InstructorStatus).HasColumnName("InstructorStatus").IsRequired();
+        builder.Property(i => i.UserId).HasColumnName("UserId").IsRequired();
+        builder.Property(i => i.CourseId).HasColumnName("CourseId").IsRequired();
         builder.Property(i => i.CreatedDate).HasColumnName("CreatedDate").IsRequired();
         builder.Property(i => i.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(i => i.DeletedDate).HasColumnName("DeletedDate");

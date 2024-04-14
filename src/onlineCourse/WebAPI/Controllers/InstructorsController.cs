@@ -14,41 +14,48 @@ namespace WebAPI.Controllers;
 public class InstructorsController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateInstructorCommand createInstructorCommand)
+    public async Task<ActionResult<CreatedInstructorResponse>> Add([FromBody] CreateInstructorCommand command)
     {
-        CreatedInstructorResponse response = await Mediator.Send(createInstructorCommand);
+        CreatedInstructorResponse response = await Mediator.Send(command);
 
-        return Created(uri: "", response);
+        return CreatedAtAction(nameof(GetById), new { response.Id }, response);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateInstructorCommand updateInstructorCommand)
+    public async Task<ActionResult<UpdatedInstructorResponse>> Update([FromBody] UpdateInstructorCommand command)
     {
-        UpdatedInstructorResponse response = await Mediator.Send(updateInstructorCommand);
+        UpdatedInstructorResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<ActionResult<DeletedInstructorResponse>> Delete([FromRoute] Guid id)
     {
-        DeletedInstructorResponse response = await Mediator.Send(new DeleteInstructorCommand { Id = id });
+        DeleteInstructorCommand command = new() { Id = id };
+
+        DeletedInstructorResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    public async Task<ActionResult<GetByIdInstructorResponse>> GetById([FromRoute] Guid id)
     {
-        GetByIdInstructorResponse response = await Mediator.Send(new GetByIdInstructorQuery { Id = id });
+        GetByIdInstructorQuery query = new() { Id = id };
+
+        GetByIdInstructorResponse response = await Mediator.Send(query);
+
         return Ok(response);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<ActionResult<GetListInstructorQuery>> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListInstructorQuery getListInstructorQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListInstructorListItemDto> response = await Mediator.Send(getListInstructorQuery);
+        GetListInstructorQuery query = new() { PageRequest = pageRequest };
+
+        GetListResponse<GetListInstructorListItemDto> response = await Mediator.Send(query);
+
         return Ok(response);
     }
 }

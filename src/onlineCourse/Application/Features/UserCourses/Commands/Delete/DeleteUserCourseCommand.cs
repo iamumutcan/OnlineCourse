@@ -3,13 +3,20 @@ using Application.Features.UserCourses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using NArchitecture.Core.Application.Pipelines.Caching;
+using NArchitecture.Core.Application.Pipelines.Logging;
+using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 
 namespace Application.Features.UserCourses.Commands.Delete;
 
-public class DeleteUserCourseCommand : IRequest<DeletedUserCourseResponse>
+public class DeleteUserCourseCommand : IRequest<DeletedUserCourseResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
+
+    public bool BypassCache { get; }
+    public string? CacheKey { get; }
+    public string[]? CacheGroupKey => ["GetUserCourses"];
 
     public class DeleteUserCourseCommandHandler : IRequestHandler<DeleteUserCourseCommand, DeletedUserCourseResponse>
     {

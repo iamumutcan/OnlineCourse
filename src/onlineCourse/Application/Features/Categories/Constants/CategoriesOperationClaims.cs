@@ -1,8 +1,5 @@
-using NArchitecture.Core.Security.Attributes;
-
 namespace Application.Features.Categories.Constants;
 
-[OperationClaimConstants]
 public static class CategoriesOperationClaims
 {
     private const string _section = "Categories";

@@ -1,6 +1,7 @@
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
@@ -8,9 +9,14 @@ using MediatR;
 
 namespace Application.Features.UserCourses.Queries.GetList;
 
-public class GetListUserCourseQuery : IRequest<GetListResponse<GetListUserCourseListItemDto>>
+public class GetListUserCourseQuery : IRequest<GetListResponse<GetListUserCourseListItemDto>>, ICachableRequest
 {
     public PageRequest PageRequest { get; set; }
+
+    public bool BypassCache { get; }
+    public string? CacheKey => $"GetListUserCourses({PageRequest.PageIndex},{PageRequest.PageSize})";
+    public string? CacheGroupKey => "GetUserCourses";
+    public TimeSpan? SlidingExpiration { get; }
 
     public class GetListUserCourseQueryHandler : IRequestHandler<GetListUserCourseQuery, GetListResponse<GetListUserCourseListItemDto>>
     {

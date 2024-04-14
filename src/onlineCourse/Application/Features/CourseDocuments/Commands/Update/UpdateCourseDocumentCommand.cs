@@ -10,12 +10,12 @@ namespace Application.Features.CourseDocuments.Commands.Update;
 public class UpdateCourseDocumentCommand : IRequest<UpdatedCourseDocumentResponse>
 {
     public Guid Id { get; set; }
-    public string FileName { get; set; }
-    public string FileExtension { get; set; }
-    public ContentType Type { get; set; }
-    public int Duration { get; set; }
-    public double FileSize { get; set; }
-    public Guid CourseContentId { get; set; }
+    public required string FileName { get; set; }
+    public required string FileExtension { get; set; }
+    public required ContentType Type { get; set; }
+    public required int Duration { get; set; }
+    public required double FileSize { get; set; }
+    public required Guid CourseContentId { get; set; }
 
     public class UpdateCourseDocumentCommandHandler : IRequestHandler<UpdateCourseDocumentCommand, UpdatedCourseDocumentResponse>
     {

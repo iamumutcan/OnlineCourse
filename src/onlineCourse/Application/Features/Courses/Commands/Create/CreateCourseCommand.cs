@@ -9,11 +9,11 @@ namespace Application.Features.Courses.Commands.Create;
 
 public class CreateCourseCommand : IRequest<CreatedCourseResponse>
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public int SortNumber { get; set; }
-    public CourseStatus Status { get; set; }
-    public Guid CategoryId { get; set; }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
+    public required int SortNumber { get; set; }
+    public required CourseStatus Status { get; set; }
+    public required Guid CategoryId { get; set; }
 
     public class CreateCourseCommandHandler : IRequestHandler<CreateCourseCommand, CreatedCourseResponse>
     {

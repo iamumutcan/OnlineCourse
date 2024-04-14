@@ -9,9 +9,9 @@ namespace Application.Features.CourseContents.Commands.Update;
 public class UpdateCourseContentCommand : IRequest<UpdatedCourseContentResponse>
 {
     public Guid Id { get; set; }
-    public int SortNumber { get; set; }
-    public string Summary { get; set; }
-    public Guid CourseId { get; set; }
+    public required int SortNumber { get; set; }
+    public required string Summary { get; set; }
+    public required Guid CourseId { get; set; }
 
     public class UpdateCourseContentCommandHandler : IRequestHandler<UpdateCourseContentCommand, UpdatedCourseContentResponse>
     {

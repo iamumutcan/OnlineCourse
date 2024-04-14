@@ -1,8 +1,5 @@
-using NArchitecture.Core.Security.Attributes;
-
 namespace Application.Features.CourseContents.Constants;
 
-[OperationClaimConstants]
 public static class CourseContentsOperationClaims
 {
     private const string _section = "CourseContents";

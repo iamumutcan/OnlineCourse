@@ -11,26 +11,33 @@ VALUES
 
 
 -- Kurslar
-INSERT INTO Courses(Id,CategoryId, Name, Description, CreatedDate)
+INSERT INTO Courses(Id,CategoryId,SortNumber,Status, Name, Description, CreatedDate)
 VALUES
-    ('4155b25d-017e-4f8f-a6fe-6dc58d674fd9','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Matematik', 'Matematik dersi içeriği', GETDATE()),
-    ('b2c6d44a-c072-49b7-9ccb-558c20c749c5','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Fizik', 'Fizik dersi içeriği', GETDATE()),
-    ('94f0a7e7-4325-43d9-bc07-4ccee2a4e103','94561889-5369-4dcd-82e4-d0d7f83cdf4f', 'Kimya', 'Kimya dersi içeriği', GETDATE());
+    ('4155b25d-017e-4f8f-a6fe-6dc58d674fd9','94561889-5369-4dcd-82e4-d0d7f83cdf4f',5,1, 'Matematik', 'Matematik dersi içeriği', GETDATE()),
+    ('b2c6d44a-c072-49b7-9ccb-558c20c749c5','94561889-5369-4dcd-82e4-d0d7f83cdf4f',5,1, 'Fizik', 'Fizik dersi içeriği', GETDATE()),
+	('7fe2fbf5-987c-4f12-b10b-df76f3d8b320','9f378682-bee5-4c62-a8c7-36eb1d14c305',5,1, 'Python Programlama', 'Python programlama dilini öğrenmek için kapsamlı bir kurs', GETDATE()),
+    ('3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4','9f378682-bee5-4c62-a8c7-36eb1d14c305',5,1, 'Veri Bilimi Temelleri', 'Veri bilimi dünyasına giriş yapmak için temel bilgilerin öğretildiği bir kurs', GETDATE()),
+    ('94f0a7e7-4325-43d9-bc07-4ccee2a4e103','94561889-5369-4dcd-82e4-d0d7f83cdf4f',5,1, 'Kimya', 'Kimya dersi içeriği', GETDATE());
 
 -- İçerikler
-INSERT INTO CourseContents(Id, Summary, CourseId, CreatedDate)
+INSERT INTO CourseContents(Id,SortNumber, Summary, CourseId, CreatedDate)
 VALUES
-    ('bb7497d7-1396-4161-9cf5-f4acd18f8638', 'Matematik dersi içeriği 1', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
-    ('d51a5581-aa7f-4e59-b689-e9154976ccc5', 'Matematik dersi içeriği 2', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
-    ('fa911e6b-7761-436b-bcb4-5cc2305cdf99', 'Matematik dersi içeriği 3', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
+    ('bb7497d7-1396-4161-9cf5-f4acd18f8638',5, 'Matematik dersi içeriği 1', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
+    ('d51a5581-aa7f-4e59-b689-e9154976ccc5',5, 'Matematik dersi içeriği 2', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
+    ('fa911e6b-7761-436b-bcb4-5cc2305cdf99', 5,'Matematik dersi içeriği 3', '4155b25d-017e-4f8f-a6fe-6dc58d674fd9', GETDATE()),
 
-    ('ff9d1c8c-4b4d-4595-a7d1-216579be2010', 'Fizik dersi içeriği 1', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
-    ('0eff8ae8-6ff0-4e66-8f7f-0935576b0210', 'Fizik dersi içeriği 2', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
-    ('0a555139-9198-405f-9438-1724587e41a5', 'Fizik dersi içeriği 3', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
+    ('ff9d1c8c-4b4d-4595-a7d1-216579be2010',5, 'Fizik dersi içeriği 1', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
+    ('0eff8ae8-6ff0-4e66-8f7f-0935576b0210',5, 'Fizik dersi içeriği 2', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
+    ('0a555139-9198-405f-9438-1724587e41a5',5, 'Fizik dersi içeriği 3', 'b2c6d44a-c072-49b7-9ccb-558c20c749c5', GETDATE()),
 
-    ('b2922346-5e77-492b-81b2-2051bc291185', 'Kimya dersi içeriği 1', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE()),
-    ('aa7844b9-7496-46d3-ba19-269340daab32', 'Kimya dersi içeriği 2', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE()),
-    ('4e554e93-dd03-4888-85ac-1c4afa51799f', 'Kimya dersi içeriği 3', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE());
+    ('b2922346-5e77-492b-81b2-2051bc291185',5, 'Kimya dersi içeriği 1', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE()),
+    ('aa7844b9-7496-46d3-ba19-269340daab32',5, 'Kimya dersi içeriği 2', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE()),
+    ('4e554e93-dd03-4888-85ac-1c4afa51799f',5, 'Kimya dersi içeriği 3', '94f0a7e7-4325-43d9-bc07-4ccee2a4e103', GETDATE()),
+
+	('94a4f3f8-2ad5-4e64-a512-92a9b4a50dc5',5, 'Python programlama diline giriş', '7fe2fbf5-987c-4f12-b10b-df76f3d8b320', GETDATE()),
+    ('b2781662-d872-4a1f-a17d-dc83f74087df', 5,'Pythonda ileri seviye konular', '7fe2fbf5-987c-4f12-b10b-df76f3d8b320', GETDATE()),
+    ('d4c081d7-0522-4eeb-9a57-6f3dbab3daa1',5, 'Veri bilimi nedir?', '3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4', GETDATE()),
+    ('f4a0d8e4-9d8e-4cbf-998f-7de57fc62e25',5, 'Veri toplama ve temizleme yöntemleri', '3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4', GETDATE());
 
 -- CourseDocument tablosuna veri ekleme
 INSERT INTO CourseDocuments(Id, FileName, FileExtension, Type, Duration, FileSize, CourseContentId, CreatedDate)
@@ -45,27 +52,13 @@ VALUES
 
     ('8a69cab0-174c-41ac-912f-8429c422b8a8', 'example_document7', '.pdf', '1', 90, 4096, 'b2922346-5e77-492b-81b2-2051bc291185', GETDATE()),
     ('1e3a05aa-a880-4b27-8eaa-ef8e04ebd3c3', 'example_document8', '.pdf', '1', 60, 3072, 'aa7844b9-7496-46d3-ba19-269340daab32', GETDATE()),
-    ('6f467df5-8b28-4751-9751-ff5bd01fa1a4', 'example_document9', '.pdf', '1', 50, 2048, '4e554e93-dd03-4888-85ac-1c4afa51799f', GETDATE());
-
-
--- Kurslar
-INSERT INTO Courses(Id,CategoryId, Name, Description, CreatedDate)
-VALUES
-    ('7fe2fbf5-987c-4f12-b10b-df76f3d8b320','9f378682-bee5-4c62-a8c7-36eb1d14c305', 'Python Programlama', 'Python programlama dilini öğrenmek için kapsamlı bir kurs', GETDATE()),
-    ('3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4','9f378682-bee5-4c62-a8c7-36eb1d14c305', 'Veri Bilimi Temelleri', 'Veri bilimi dünyasına giriş yapmak için temel bilgilerin öğretildiği bir kurs', GETDATE());
-
--- İçerikler
-INSERT INTO CourseContents (Id, Summary, CourseId, CreatedDate)
-VALUES
-    ('94a4f3f8-2ad5-4e64-a512-92a9b4a50dc5', 'Python programlama diline giriş', '7fe2fbf5-987c-4f12-b10b-df76f3d8b320', GETDATE()),
-    ('b2781662-d872-4a1f-a17d-dc83f74087df', 'Pythonda ileri seviye konular', '7fe2fbf5-987c-4f12-b10b-df76f3d8b320', GETDATE()),
-    ('d4c081d7-0522-4eeb-9a57-6f3dbab3daa1', 'Veri bilimi nedir?', '3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4', GETDATE()),
-    ('f4a0d8e4-9d8e-4cbf-998f-7de57fc62e25', 'Veri toplama ve temizleme yöntemleri', '3f3e3ecf-bd9e-476e-aaf7-c3a5a49b82c4', GETDATE());
-
--- CourseDocument tablosuna veri ekleme
-INSERT INTO CourseDocuments (Id, FileName, FileExtension, Type, Duration, FileSize, CourseContentId, CreatedDate)
-VALUES
-    ('b5a1c6b9-09c4-4e94-8ec0-08c72efb5fc0', 'python_basics', '.pdf', '1', 45, 512, '94a4f3f8-2ad5-4e64-a512-92a9b4a50dc5', GETDATE()),
+    ('6f467df5-8b28-4751-9751-ff5bd01fa1a4', 'example_document9', '.pdf', '1', 50, 2048, '4e554e93-dd03-4888-85ac-1c4afa51799f', GETDATE()),
+	 ('b5a1c6b9-09c4-4e94-8ec0-08c72efb5fc0', 'python_basics', '.pdf', '1', 45, 512, '94a4f3f8-2ad5-4e64-a512-92a9b4a50dc5', GETDATE()),
     ('d1b96bc9-4c35-4b7e-b9e1-37d36e80c2e8', 'python_advanced', '.pdf', '1', 60, 768, 'b2781662-d872-4a1f-a17d-dc83f74087df', GETDATE()),
     ('2bf2f032-7927-46f4-b9f4-df66f82a90d7', 'data_science_intro', '.pdf', '1', 30, 256, 'd4c081d7-0522-4eeb-9a57-6f3dbab3daa1', GETDATE()),
     ('8e2ac174-c125-4b20-9a78-539b89673fd4', 'data_collection_methods', '.pdf', '1', 40, 384, 'f4a0d8e4-9d8e-4cbf-998f-7de57fc62e25', GETDATE());
+
+
+
+
+

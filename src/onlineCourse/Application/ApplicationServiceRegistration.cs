@@ -1,9 +1,6 @@
+using System.Reflection;
 using Application.Services.AuthenticatorService;
 using Application.Services.AuthService;
-using Application.Services.CourseContents;
-using Application.Services.CourseDocuments;
-using Application.Services.Courses;
-using Application.Services.UserCourses;
 using Application.Services.UsersService;
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,9 +19,13 @@ using NArchitecture.Core.Localization.Resource.Yaml.DependencyInjection;
 using NArchitecture.Core.Mailing;
 using NArchitecture.Core.Mailing.MailKit;
 using NArchitecture.Core.Security.DependencyInjection;
-using System.Reflection;
+using NArchitecture.Core.Security.JWT;
 using Application.Services.Categories;
+using Application.Services.Courses;
+using Application.Services.CourseContents;
+using Application.Services.CourseDocuments;
 using Application.Services.Instructors;
+using Application.Services.UserCourses;
 
 namespace Application;
 
@@ -34,7 +35,8 @@ public static class ApplicationServiceRegistration
         this IServiceCollection services,
         MailSettings mailSettings,
         FileLogConfiguration fileLogConfiguration,
-        ElasticSearchConfig elasticSearchConfig
+        ElasticSearchConfig elasticSearchConfig,
+        TokenOptions tokenOptions
     )
     {
         services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -63,17 +65,15 @@ public static class ApplicationServiceRegistration
 
         services.AddYamlResourceLocalization();
 
-        services.AddSecurityServices<Guid, int>();
+        services.AddSecurityServices<Guid, int, Guid>(tokenOptions);
 
-        services.AddScoped<ICourseService, CourseManager>();
-        services.AddScoped<ICourseContentService, CourseContentManager>();
-        services.AddScoped<ICourseDocumentService, CourseDocumentManager>();
-        services.AddScoped<IUserCourseService, UserCourseManager>();
         services.AddScoped<ICategoryService, CategoryManager>();
-        services.AddScoped<IInstructorService, InstructorManager>();
         services.AddScoped<ICourseService, CourseManager>();
         services.AddScoped<ICourseContentService, CourseContentManager>();
         services.AddScoped<ICourseDocumentService, CourseDocumentManager>();
+        services.AddScoped<IInstructorService, InstructorManager>();
+        services.AddScoped<IUserCourseService, UserCourseManager>();
+        services.AddScoped<IUserCourseService, UserCourseManager>();
         services.AddScoped<IUserCourseService, UserCourseManager>();
         return services;
     }

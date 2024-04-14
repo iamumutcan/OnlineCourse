@@ -2,16 +2,23 @@ using Application.Features.UserCourses.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using NArchitecture.Core.Application.Pipelines.Caching;
+using NArchitecture.Core.Application.Pipelines.Logging;
+using NArchitecture.Core.Application.Pipelines.Transaction;
 using MediatR;
 
 namespace Application.Features.UserCourses.Commands.Update;
 
-public class UpdateUserCourseCommand : IRequest<UpdatedUserCourseResponse>
+public class UpdateUserCourseCommand : IRequest<UpdatedUserCourseResponse>, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
 {
     public Guid Id { get; set; }
-    public Guid UserId { get; set; }
-    public Guid CourseId { get; set; }
-    public Boolean Confirmation { get; set; }
+    public required Guid UserId { get; set; }
+    public required Guid CourseId { get; set; }
+    public required Boolean Confirmation { get; set; }
+
+    public bool BypassCache { get; }
+    public string? CacheKey { get; }
+    public string[]? CacheGroupKey => ["GetUserCourses"];
 
     public class UpdateUserCourseCommandHandler : IRequestHandler<UpdateUserCourseCommand, UpdatedUserCourseResponse>
     {

@@ -12,7 +12,7 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(BaseDbContext))]
-    [Migration("20240403225714_init")]
+    [Migration("20240412193209_init")]
     partial class init
     {
         /// <inheritdoc />
@@ -67,7 +67,8 @@ namespace Persistence.Migrations
                         .HasColumnName("Id");
 
                     b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CategoryId");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2")
@@ -91,10 +92,12 @@ namespace Persistence.Migrations
                         .HasColumnName("Name");
 
                     b.Property<int>("SortNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("SortNumber");
 
                     b.Property<int>("Status")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Status");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2")
@@ -134,7 +137,8 @@ namespace Persistence.Migrations
                         .HasColumnName("DeletedDate");
 
                     b.Property<int>("SortNumber")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("SortNumber");
 
                     b.Property<string>("Summary")
                         .IsRequired()
@@ -602,73 +606,109 @@ namespace Persistence.Migrations
                         {
                             Id = 48,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Admin"
+                            Name = "Instructors.Admin"
                         },
                         new
                         {
                             Id = 49,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Read"
+                            Name = "Instructors.Read"
                         },
                         new
                         {
                             Id = 50,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Write"
+                            Name = "Instructors.Write"
                         },
                         new
                         {
                             Id = 51,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Create"
+                            Name = "Instructors.Create"
                         },
                         new
                         {
                             Id = 52,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Update"
+                            Name = "Instructors.Update"
                         },
                         new
                         {
                             Id = 53,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "UserCourses.Delete"
+                            Name = "Instructors.Delete"
                         },
                         new
                         {
                             Id = 54,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Admin"
+                            Name = "UserCourses.Admin"
                         },
                         new
                         {
                             Id = 55,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Read"
+                            Name = "UserCourses.Read"
                         },
                         new
                         {
                             Id = 56,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Write"
+                            Name = "UserCourses.Write"
                         },
                         new
                         {
                             Id = 57,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Create"
+                            Name = "UserCourses.Create"
                         },
                         new
                         {
                             Id = 58,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Update"
+                            Name = "UserCourses.Update"
                         },
                         new
                         {
                             Id = 59,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "Instructors.Delete"
+                            Name = "UserCourses.Delete"
+                        },
+                        new
+                        {
+                            Id = 60,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Admin"
+                        },
+                        new
+                        {
+                            Id = 61,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Read"
+                        },
+                        new
+                        {
+                            Id = 62,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Write"
+                        },
+                        new
+                        {
+                            Id = 63,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Create"
+                        },
+                        new
+                        {
+                            Id = 64,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Update"
+                        },
+                        new
+                        {
+                            Id = 65,
+                            CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "UserCourses.Delete"
                         });
                 });
 
@@ -731,7 +771,7 @@ namespace Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DeletedDate");
 
-                    b.Property<DateTime>("ExpiresDate")
+                    b.Property<DateTime>("ExpirationDate")
                         .HasColumnType("datetime2")
                         .HasColumnName("ExpiresDate");
 
@@ -821,12 +861,12 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("6df97c97-a9b0-416f-8f79-079e1992f5fb"),
+                            Id = new Guid("d81fc04c-9d33-41c4-8651-4a9167eacb08"),
                             AuthenticatorType = 0,
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "narch@kodlama.io",
-                            PasswordHash = new byte[] { 214, 89, 90, 36, 35, 142, 170, 137, 68, 193, 240, 71, 45, 192, 54, 22, 150, 22, 19, 167, 48, 2, 251, 113, 226, 10, 100, 8, 74, 155, 158, 152, 104, 102, 98, 50, 190, 22, 22, 105, 203, 243, 16, 111, 208, 143, 87, 114, 234, 242, 185, 177, 248, 35, 254, 73, 129, 102, 70, 101, 91, 123, 190, 134 },
-                            PasswordSalt = new byte[] { 169, 17, 42, 79, 137, 103, 250, 180, 181, 163, 98, 219, 105, 57, 1, 37, 239, 40, 134, 93, 199, 57, 76, 13, 82, 115, 53, 187, 206, 49, 45, 176, 180, 40, 91, 9, 8, 58, 135, 213, 245, 182, 233, 18, 152, 253, 127, 53, 210, 198, 254, 84, 176, 216, 217, 171, 172, 75, 172, 195, 27, 136, 189, 25, 23, 213, 69, 41, 18, 132, 172, 147, 225, 62, 87, 120, 186, 173, 76, 150, 237, 246, 163, 9, 82, 207, 249, 194, 157, 7, 221, 252, 196, 76, 20, 17, 194, 89, 29, 171, 58, 27, 210, 28, 205, 23, 237, 148, 83, 118, 210, 130, 226, 193, 149, 161, 47, 140, 186, 23, 48, 117, 145, 180, 56, 67, 251, 82 }
+                            PasswordHash = new byte[] { 127, 235, 107, 126, 133, 174, 129, 203, 53, 74, 10, 36, 229, 93, 183, 244, 99, 132, 100, 113, 205, 187, 213, 192, 205, 49, 197, 198, 227, 120, 215, 242, 72, 69, 114, 62, 59, 155, 139, 115, 106, 97, 243, 214, 68, 245, 224, 197, 181, 96, 64, 26, 81, 5, 153, 170, 61, 82, 248, 107, 190, 136, 90, 178 },
+                            PasswordSalt = new byte[] { 212, 50, 232, 131, 28, 18, 38, 85, 18, 235, 105, 133, 187, 126, 247, 226, 57, 79, 117, 21, 18, 134, 13, 239, 188, 44, 194, 230, 247, 27, 16, 173, 126, 185, 150, 15, 20, 51, 113, 137, 150, 196, 162, 203, 115, 52, 63, 218, 136, 220, 59, 204, 65, 197, 59, 18, 216, 20, 27, 207, 147, 84, 83, 78, 23, 250, 252, 169, 148, 151, 233, 63, 142, 79, 93, 75, 147, 170, 2, 162, 229, 101, 188, 15, 99, 254, 28, 3, 200, 236, 135, 89, 81, 70, 42, 8, 143, 182, 163, 143, 154, 112, 61, 39, 122, 42, 9, 120, 159, 211, 104, 114, 214, 156, 158, 213, 250, 54, 106, 255, 42, 4, 187, 125, 167, 23, 143, 215 }
                         });
                 });
 
@@ -836,6 +876,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
+
+                    b.Property<bool>("Confirmation")
+                        .HasColumnType("bit")
+                        .HasColumnName("Confirmation");
 
                     b.Property<Guid>("CourseId")
                         .HasColumnType("uniqueidentifier")
@@ -900,10 +944,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("ad134abe-4304-4c8b-ad05-7a957cf598d0"),
+                            Id = new Guid("dba9416c-7de7-414c-8466-abddd4f1b1ba"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("6df97c97-a9b0-416f-8f79-079e1992f5fb")
+                            UserId = new Guid("d81fc04c-9d33-41c4-8651-4a9167eacb08")
                         });
                 });
 

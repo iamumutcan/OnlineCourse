@@ -6,6 +6,7 @@ using Application.Features.CourseDocuments.Queries.GetList;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
 using Microsoft.AspNetCore.Mvc;
+using Infrastructure.Adapters.FileService;
 
 namespace WebAPI.Controllers;
 
@@ -13,42 +14,67 @@ namespace WebAPI.Controllers;
 [ApiController]
 public class CourseDocumentsController : BaseController
 {
-    [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateCourseDocumentCommand createCourseDocumentCommand)
+    [HttpPost("UploadFile")]
+    public IActionResult UploadFile(IFormFile file)
     {
-        CreatedCourseDocumentResponse response = await Mediator.Send(createCourseDocumentCommand);
+        if (file == null || file.Length == 0)
+        {
+            return BadRequest("File is null or empty");
+        }
 
-        return Created(uri: "", response);
+        var uploadHandler = new UploadHandler();
+        var result = uploadHandler.Upload(file);
+
+        if (!string.IsNullOrEmpty(result.Error))
+        {
+            return BadRequest(result.Error);
+        }
+
+        return Ok(result);
+    }
+    [HttpPost]
+    public async Task<ActionResult<CreatedCourseDocumentResponse>> Add([FromBody] CreateCourseDocumentCommand command)
+    {
+        CreatedCourseDocumentResponse response = await Mediator.Send(command);
+
+        return CreatedAtAction(nameof(GetById), new { response.Id }, response);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCourseDocumentCommand updateCourseDocumentCommand)
+    public async Task<ActionResult<UpdatedCourseDocumentResponse>> Update([FromBody] UpdateCourseDocumentCommand command)
     {
-        UpdatedCourseDocumentResponse response = await Mediator.Send(updateCourseDocumentCommand);
+        UpdatedCourseDocumentResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<ActionResult<DeletedCourseDocumentResponse>> Delete([FromRoute] Guid id)
     {
-        DeletedCourseDocumentResponse response = await Mediator.Send(new DeleteCourseDocumentCommand { Id = id });
+        DeleteCourseDocumentCommand command = new() { Id = id };
+
+        DeletedCourseDocumentResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    public async Task<ActionResult<GetByIdCourseDocumentResponse>> GetById([FromRoute] Guid id)
     {
-        GetByIdCourseDocumentResponse response = await Mediator.Send(new GetByIdCourseDocumentQuery { Id = id });
+        GetByIdCourseDocumentQuery query = new() { Id = id };
+
+        GetByIdCourseDocumentResponse response = await Mediator.Send(query);
+
         return Ok(response);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<ActionResult<GetListCourseDocumentQuery>> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListCourseDocumentQuery getListCourseDocumentQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListCourseDocumentListItemDto> response = await Mediator.Send(getListCourseDocumentQuery);
+        GetListCourseDocumentQuery query = new() { PageRequest = pageRequest };
+
+        GetListResponse<GetListCourseDocumentListItemDto> response = await Mediator.Send(query);
+
         return Ok(response);
     }
 }

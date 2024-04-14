@@ -30,6 +30,8 @@ public class GetByIdCourseQuery : IRequest<GetByIdCourseResponse>
                 include: c => c.Include(c => c.CourseContents),
                 predicate: c => c.Id == request.Id, cancellationToken: cancellationToken);
             await _courseBusinessRules.CourseShouldExistWhenSelected(course);
+            // Sort the CourseContents by SortNumber
+            course.CourseContents = course.CourseContents.OrderBy(cc => cc.SortNumber).ToList();
 
             GetByIdCourseResponse response = _mapper.Map<GetByIdCourseResponse>(course);
             return response;

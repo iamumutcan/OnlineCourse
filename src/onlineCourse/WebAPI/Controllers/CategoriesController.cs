@@ -14,41 +14,48 @@ namespace WebAPI.Controllers;
 public class CategoriesController : BaseController
 {
     [HttpPost]
-    public async Task<IActionResult> Add([FromBody] CreateCategoryCommand createCategoryCommand)
+    public async Task<ActionResult<CreatedCategoryResponse>> Add([FromBody] CreateCategoryCommand command)
     {
-        CreatedCategoryResponse response = await Mediator.Send(createCategoryCommand);
+        CreatedCategoryResponse response = await Mediator.Send(command);
 
-        return Created(uri: "", response);
+        return CreatedAtAction(nameof(GetById), new { response.Id }, response);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Update([FromBody] UpdateCategoryCommand updateCategoryCommand)
+    public async Task<ActionResult<UpdatedCategoryResponse>> Update([FromBody] UpdateCategoryCommand command)
     {
-        UpdatedCategoryResponse response = await Mediator.Send(updateCategoryCommand);
+        UpdatedCategoryResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete([FromRoute] Guid id)
+    public async Task<ActionResult<DeletedCategoryResponse>> Delete([FromRoute] Guid id)
     {
-        DeletedCategoryResponse response = await Mediator.Send(new DeleteCategoryCommand { Id = id });
+        DeleteCategoryCommand command = new() { Id = id };
+
+        DeletedCategoryResponse response = await Mediator.Send(command);
 
         return Ok(response);
     }
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetById([FromRoute] Guid id)
+    public async Task<ActionResult<GetByIdCategoryResponse>> GetById([FromRoute] Guid id)
     {
-        GetByIdCategoryResponse response = await Mediator.Send(new GetByIdCategoryQuery { Id = id });
+        GetByIdCategoryQuery query = new() { Id = id };
+
+        GetByIdCategoryResponse response = await Mediator.Send(query);
+
         return Ok(response);
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
+    public async Task<ActionResult<GetListCategoryQuery>> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListCategoryQuery getListCategoryQuery = new() { PageRequest = pageRequest };
-        GetListResponse<GetListCategoryListItemDto> response = await Mediator.Send(getListCategoryQuery);
+        GetListCategoryQuery query = new() { PageRequest = pageRequest };
+
+        GetListResponse<GetListCategoryListItemDto> response = await Mediator.Send(query);
+
         return Ok(response);
     }
 }

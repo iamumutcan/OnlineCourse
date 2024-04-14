@@ -14,14 +14,18 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<CourseContent, CreateCourseContentCommand>().ReverseMap();
-        CreateMap<CourseContent, CreatedCourseContentResponse>().ReverseMap();
-        CreateMap<CourseContent, UpdateCourseContentCommand>().ReverseMap();
-        CreateMap<CourseContent, UpdatedCourseContentResponse>().ReverseMap();
-        CreateMap<CourseContent, DeleteCourseContentCommand>().ReverseMap();
-        CreateMap<CourseContent, DeletedCourseContentResponse>().ReverseMap();
-        CreateMap<CourseContent, GetByIdCourseContentResponse>().ReverseMap();
-        CreateMap<CourseContent, GetListCourseContentListItemDto>().ReverseMap();
-        CreateMap<IPaginate<CourseContent>, GetListResponse<GetListCourseContentListItemDto>>().ReverseMap();
+        CreateMap<CreateCourseContentCommand, CourseContent>();
+        CreateMap<CourseContent, CreatedCourseContentResponse>();
+
+        CreateMap<UpdateCourseContentCommand, CourseContent>();
+        CreateMap<CourseContent, UpdatedCourseContentResponse>();
+
+        CreateMap<DeleteCourseContentCommand, CourseContent>();
+        CreateMap<CourseContent, DeletedCourseContentResponse>();
+
+        CreateMap<CourseContent, GetByIdCourseContentResponse>();
+
+        CreateMap<CourseContent, GetListCourseContentListItemDto>();
+        CreateMap<IPaginate<CourseContent>, GetListResponse<GetListCourseContentListItemDto>>();
     }
 }

@@ -9,8 +9,8 @@ namespace Application.Features.Categories.Commands.Update;
 public class UpdateCategoryCommand : IRequest<UpdatedCategoryResponse>
 {
     public Guid Id { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
 
     public class UpdateCategoryCommandHandler : IRequestHandler<UpdateCategoryCommand, UpdatedCategoryResponse>
     {

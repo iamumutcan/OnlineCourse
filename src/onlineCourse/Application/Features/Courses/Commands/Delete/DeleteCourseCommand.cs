@@ -30,7 +30,7 @@ public class DeleteCourseCommand : IRequest<DeletedCourseResponse>
             Course? course = await _courseRepository.GetAsync(predicate: c => c.Id == request.Id, cancellationToken: cancellationToken);
             await _courseBusinessRules.CourseShouldExistWhenSelected(course);
 
-           await _courseRepository.DeleteAsync(course!,true);
+            await _courseRepository.DeleteAsync(course!);
 
             DeletedCourseResponse response = _mapper.Map<DeletedCourseResponse>(course);
             return response;

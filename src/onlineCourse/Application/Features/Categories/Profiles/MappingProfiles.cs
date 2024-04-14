@@ -14,14 +14,18 @@ public class MappingProfiles : Profile
 {
     public MappingProfiles()
     {
-        CreateMap<Category, CreateCategoryCommand>().ReverseMap();
-        CreateMap<Category, CreatedCategoryResponse>().ReverseMap();
-        CreateMap<Category, UpdateCategoryCommand>().ReverseMap();
-        CreateMap<Category, UpdatedCategoryResponse>().ReverseMap();
-        CreateMap<Category, DeleteCategoryCommand>().ReverseMap();
-        CreateMap<Category, DeletedCategoryResponse>().ReverseMap();
-        CreateMap<Category, GetByIdCategoryResponse>().ReverseMap();
-        CreateMap<Category, GetListCategoryListItemDto>().ReverseMap();
-        CreateMap<IPaginate<Category>, GetListResponse<GetListCategoryListItemDto>>().ReverseMap();
+        CreateMap<CreateCategoryCommand, Category>();
+        CreateMap<Category, CreatedCategoryResponse>();
+
+        CreateMap<UpdateCategoryCommand, Category>();
+        CreateMap<Category, UpdatedCategoryResponse>();
+
+        CreateMap<DeleteCategoryCommand, Category>();
+        CreateMap<Category, DeletedCategoryResponse>();
+
+        CreateMap<Category, GetByIdCategoryResponse>();
+
+        CreateMap<Category, GetListCategoryListItemDto>();
+        CreateMap<IPaginate<Category>, GetListResponse<GetListCategoryListItemDto>>();
     }
 }

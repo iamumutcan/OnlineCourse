@@ -13,4 +13,5 @@ public class GetByIdCourseResponse : IResponse
     public CourseStatus Status { get; set; }
     public Guid CategoryId { get; set; }
     public ICollection<CourseContent> CourseContents { get; set; }
+
 }

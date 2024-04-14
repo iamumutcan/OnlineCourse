@@ -9,12 +9,12 @@ namespace Application.Features.CourseDocuments.Commands.Create;
 
 public class CreateCourseDocumentCommand : IRequest<CreatedCourseDocumentResponse>
 {
-    public string FileName { get; set; }
-    public string FileExtension { get; set; }
-    public ContentType Type { get; set; }
-    public int Duration { get; set; }
-    public double FileSize { get; set; }
-    public Guid CourseContentId { get; set; }
+    public required string FileName { get; set; }
+    public required string FileExtension { get; set; }
+    public required ContentType Type { get; set; }
+    public required int Duration { get; set; }
+    public required double FileSize { get; set; }
+    public required Guid CourseContentId { get; set; }
 
     public class CreateCourseDocumentCommandHandler : IRequestHandler<CreateCourseDocumentCommand, CreatedCourseDocumentResponse>
     {

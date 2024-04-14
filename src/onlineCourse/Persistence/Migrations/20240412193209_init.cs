@@ -52,6 +52,7 @@ namespace Persistence.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CourseId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Confirmation = table.Column<bool>(type: "bit", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -349,29 +350,35 @@ namespace Persistence.Migrations
                     { 45, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "CourseDocuments.Create", null },
                     { 46, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "CourseDocuments.Update", null },
                     { 47, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "CourseDocuments.Delete", null },
-                    { 48, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Admin", null },
-                    { 49, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Read", null },
-                    { 50, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Write", null },
-                    { 51, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Create", null },
-                    { 52, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Update", null },
-                    { 53, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Delete", null },
-                    { 54, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Admin", null },
-                    { 55, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Read", null },
-                    { 56, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Write", null },
-                    { 57, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Create", null },
-                    { 58, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Update", null },
-                    { 59, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Delete", null }
+                    { 48, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Admin", null },
+                    { 49, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Read", null },
+                    { 50, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Write", null },
+                    { 51, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Create", null },
+                    { 52, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Update", null },
+                    { 53, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Delete", null },
+                    { 54, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Admin", null },
+                    { 55, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Read", null },
+                    { 56, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Write", null },
+                    { 57, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Create", null },
+                    { 58, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Update", null },
+                    { 59, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Delete", null },
+                    { 60, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Admin", null },
+                    { 61, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Read", null },
+                    { 62, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Write", null },
+                    { 63, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Create", null },
+                    { 64, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Update", null },
+                    { 65, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "UserCourses.Delete", null }
                 });
 
             migrationBuilder.InsertData(
                 table: "Users",
                 columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DeletedDate", "Email", "PasswordHash", "PasswordSalt", "UpdatedDate", "UserCourseId" },
-                values: new object[] { new Guid("6df97c97-a9b0-416f-8f79-079e1992f5fb"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 214, 89, 90, 36, 35, 142, 170, 137, 68, 193, 240, 71, 45, 192, 54, 22, 150, 22, 19, 167, 48, 2, 251, 113, 226, 10, 100, 8, 74, 155, 158, 152, 104, 102, 98, 50, 190, 22, 22, 105, 203, 243, 16, 111, 208, 143, 87, 114, 234, 242, 185, 177, 248, 35, 254, 73, 129, 102, 70, 101, 91, 123, 190, 134 }, new byte[] { 169, 17, 42, 79, 137, 103, 250, 180, 181, 163, 98, 219, 105, 57, 1, 37, 239, 40, 134, 93, 199, 57, 76, 13, 82, 115, 53, 187, 206, 49, 45, 176, 180, 40, 91, 9, 8, 58, 135, 213, 245, 182, 233, 18, 152, 253, 127, 53, 210, 198, 254, 84, 176, 216, 217, 171, 172, 75, 172, 195, 27, 136, 189, 25, 23, 213, 69, 41, 18, 132, 172, 147, 225, 62, 87, 120, 186, 173, 76, 150, 237, 246, 163, 9, 82, 207, 249, 194, 157, 7, 221, 252, 196, 76, 20, 17, 194, 89, 29, 171, 58, 27, 210, 28, 205, 23, 237, 148, 83, 118, 210, 130, 226, 193, 149, 161, 47, 140, 186, 23, 48, 117, 145, 180, 56, 67, 251, 82 }, null, null });
+                values: new object[] { new Guid("d81fc04c-9d33-41c4-8651-4a9167eacb08"), 0, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "narch@kodlama.io", new byte[] { 127, 235, 107, 126, 133, 174, 129, 203, 53, 74, 10, 36, 229, 93, 183, 244, 99, 132, 100, 113, 205, 187, 213, 192, 205, 49, 197, 198, 227, 120, 215, 242, 72, 69, 114, 62, 59, 155, 139, 115, 106, 97, 243, 214, 68, 245, 224, 197, 181, 96, 64, 26, 81, 5, 153, 170, 61, 82, 248, 107, 190, 136, 90, 178 }, new byte[] { 212, 50, 232, 131, 28, 18, 38, 85, 18, 235, 105, 133, 187, 126, 247, 226, 57, 79, 117, 21, 18, 134, 13, 239, 188, 44, 194, 230, 247, 27, 16, 173, 126, 185, 150, 15, 20, 51, 113, 137, 150, 196, 162, 203, 115, 52, 63, 218, 136, 220, 59, 204, 65, 197, 59, 18, 216, 20, 27, 207, 147, 84, 83, 78, 23, 250, 252, 169, 148, 151, 233, 63, 142, 79, 93, 75, 147, 170, 2, 162, 229, 101, 188, 15, 99, 254, 28, 3, 200, 236, 135, 89, 81, 70, 42, 8, 143, 182, 163, 143, 154, 112, 61, 39, 122, 42, 9, 120, 159, 211, 104, 114, 214, 156, 158, 213, 250, 54, 106, 255, 42, 4, 187, 125, 167, 23, 143, 215 }, null, null });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[] { new Guid("ad134abe-4304-4c8b-ad05-7a957cf598d0"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("6df97c97-a9b0-416f-8f79-079e1992f5fb") });
+                values: new object[] { new Guid("dba9416c-7de7-414c-8466-abddd4f1b1ba"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("d81fc04c-9d33-41c4-8651-4a9167eacb08") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CourseContents_CourseId",

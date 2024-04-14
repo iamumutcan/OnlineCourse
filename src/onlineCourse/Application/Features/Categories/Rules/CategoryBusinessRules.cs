@@ -23,6 +23,13 @@ public class CategoryBusinessRules : BaseBusinessRules
         string message = await _localizationService.GetLocalizedAsync(messageKey, CategoriesBusinessMessages.SectionName);
         throw new BusinessException(message);
     }
+    public async Task CategoryNameCannotBeDuplicatedWhenInserted(string name)
+    {
+        Category? result=await _categoryRepository.GetAsync(predicate:b=>b.Name.ToLower()==name.ToLower());
+        if (result != null){
+            throw new BusinessException(CategoriesBusinessMessages.CategoryNameExists);
+        }
+    }
 
     public async Task CategoryShouldExistWhenSelected(Category? category)
     {
