@@ -3,6 +3,7 @@ using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 
 namespace Application.Features.Categories.Queries.GetById;
 
@@ -25,7 +26,10 @@ public class GetByIdCategoryQuery : IRequest<GetByIdCategoryResponse>
 
         public async Task<GetByIdCategoryResponse> Handle(GetByIdCategoryQuery request, CancellationToken cancellationToken)
         {
-            Category? category = await _categoryRepository.GetAsync(predicate: c => c.Id == request.Id, cancellationToken: cancellationToken);
+            Category? category = await _categoryRepository.GetAsync(
+                predicate: c => c.Id == request.Id,
+                include: c => c.Include(c => c.Courses),
+                cancellationToken: cancellationToken);
             await _categoryBusinessRules.CategoryShouldExistWhenSelected(category);
 
             GetByIdCategoryResponse response = _mapper.Map<GetByIdCategoryResponse>(category);
