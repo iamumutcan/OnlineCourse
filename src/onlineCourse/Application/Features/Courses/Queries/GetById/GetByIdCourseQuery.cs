@@ -1,9 +1,12 @@
+using Application.Features.Courses.Constants;
 using Application.Features.Courses.Rules;
+using Application.Features.Users.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.Courses.Queries.GetById;
 

@@ -1,15 +1,19 @@
+using Application.Features.Categories.Constants;
 using Application.Features.Categories.Rules;
+using Application.Features.Users.Constants;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 
 namespace Application.Features.Categories.Queries.GetById;
 
 public class GetByIdCategoryQuery : IRequest<GetByIdCategoryResponse>
 {
     public Guid Id { get; set; }
+
 
     public class GetByIdCategoryQueryHandler : IRequestHandler<GetByIdCategoryQuery, GetByIdCategoryResponse>
     {

@@ -1,0 +1,4 @@
+{
+  "email": "narch@kodlama.io",
+  "password": "Passw0rd!"
+}

@@ -15,7 +15,7 @@ public class CoursesController : BaseController
 {
     [HttpPost]
     public async Task<ActionResult<CreatedCourseResponse>> Add([FromBody] CreateCourseCommand command)
-    {
+        {
         CreatedCourseResponse response = await Mediator.Send(command);
 
         return CreatedAtAction(nameof(GetById), new { response.Id }, response);
